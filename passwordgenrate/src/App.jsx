@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 
 
 import './App.css'
@@ -21,12 +21,17 @@ function App() {
         for (let i = 1; i <= length; i++){
           let char = Math.floor(Math.random() * str.length + 1)
           
-          pass = str.charAt(char)
+          pass += str.charAt(char)
         }
 
         setPassword(pass)
 
      },[length,number,char, setPassword])
+
+
+     useEffect(()=>{
+      passwordGenrator()
+     },[length,number,char,passwordGenrator])
 
 
 
@@ -48,6 +53,61 @@ function App() {
              />
 
              <button className="outline-none bg-blue-500 hover:bg-blue-700 font-medium transition-color cursor-pointer  text-white px-4 py-1 shrink-0">Copy</button>
+
+          </div>
+
+          <div className='flex items-center gap-x-2'>
+
+            <div className='flex items-center gap-x-1'>
+
+              <input type="range"
+              min={6}
+              max={100}
+              value={length}
+              className='cursor-pointer '
+              onChange={(e)=>{setLength(e.target.value)}}
+              />
+
+              <label className='text-black font-medium'>Length: {length}</label>
+
+            </div>
+
+
+          <div className='flex items-center gap-x-1'>
+
+            <input type="checkbox"
+            defaultChecked={setNumber}
+            id='numberInput'
+            onChange={() =>{
+                setNumber((prev) => !prev)
+            }}
+            
+            
+            />
+
+            <label className='text-black' htmlFor='numberInput'>Number</label>
+             
+            
+          </div>
+
+          <div className='flex items-center gap-x-1'>
+
+            <input type="checkbox"
+            defaultChecked={charAllo}
+            id='charinput'
+            onChange={() =>{
+                setNumber((prev) => !prev)
+            }}
+            
+            
+            />
+
+            <label className='text-black' htmlFor='numberInput'>Characters</label>
+             
+            
+          </div>
+
+
 
           </div>
 
