@@ -8,7 +8,7 @@ export default function App() {
   const [to, setTo] = useState("INR");
   const [convertedAmount, setConvertedAmount] = useState(0);
 
-  // Hook se rate sheet li
+  // 
   const currencyInfo = useCurrencyInfo(from);
   const options = Object.keys(currencyInfo || {});
 
